@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royal Wedding Invitation | Geeta & Dhiraj</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel+Decorative:wght@600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            light: '#FCE762',
+                            DEFAULT: '#D4AF37',
+                            dark: '#9A7B1C',
+                            deep: '#6E4700'
+                        },
+                        silver: {
+                            light: '#F8FAFC',
+                            DEFAULT: '#CBD5E1',
+                            dark: '#64748B',
+                            deep: '#0F172A'
+                        }
+                    },
+                    fontFamily: {
+                        calligraphy: ['"Alex Brush"', 'cursive'],
+                        cinzel: ['"Cinzel Decorative"', 'serif'],
+                        garamond: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Montserrat"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* CSS Variables for Dynamic Aura Themes */
+        :root {
+            --bg-primary: #FAF9F6;
+            --bg-card: rgba(255, 255, 255, 0.88);
+            --border-accent: rgba(212, 175, 55, 0.4);
+            --accent-glow: rgba(212, 175, 55, 0.15);
+            --text-heading: #2D3748;
+            --door-bg-left: linear-[#FFFDF9];
+            --pill-bg: #FFFFFF;
+            --btn-grad-start: #D4AF37;
+            --btn-grad-end: #B8860B;
+            --petal-color-1: rgba(244, 114, 182, 0.8);
+            --petal-color-2: rgba(251, 191, 36, 0.85);
+            --rice-color: rgba(255, 215, 0, 0.9);
+        }
+
+        /* Theme Overrides */
+        body.theme-peacock {
+            --bg-primary: #F0FDF4;
+            --bg-card: rgba(255, 255, 255, 0.92);
+            --border-accent: rgba(16, 185, 129, 0.35);
+            --accent-glow: rgba(16, 185, 129, 0.12);
+            --text-heading: #064E3B;
+            --btn-grad-start: #059669;
+            --btn-grad-end: #047857;
+            --petal-color-1: rgba(52, 211, 153, 0.75);
+            --petal-color-2: rgba(251, 191, 36, 0.85);
+        }
+
+        body.theme-rose {
+            --bg-primary: #FFF1F2;
+            --bg-card: rgba(255, 255, 255, 0.92);
+            --border-accent: rgba(244, 63, 94, 0.35);
+            --accent-glow: rgba(244, 63, 94, 0.12);
+            --text-heading: #881337;
+            --btn-grad-start: #E11D48;
+            --btn-grad-end: #BE123C;
+            --petal-color-1: rgba(251, 113, 133, 0.85);
+            --petal-color-2: rgba(253, 164, 175, 0.8);
+        }
+
+        body.theme-haldi {
+            --bg-primary: #FEFCE8;
+            --bg-card: rgba(255, 255, 255, 0.92);
+            --border-accent: rgba(234, 179, 8, 0.4);
+            --accent-glow: rgba(234, 179, 8, 0.15);
+            --text-heading: #713F12;
+            --btn-grad-start: #D97706;
+            --btn-grad-end: #B45309;
+            --petal-color-1: rgba(251, 191, 36, 0.9);
+            --petal-color-2: rgba(245, 158, 11, 0.85);
+        }
+
+        /* 3D Curtain Door Container */
+        .curtain-perspective {
+            perspective: 1500px;
+            perspective-origin: center center;
+        }
+
+        .door-left {
+            transform-origin: left center;
+            transition: transform 1.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        .door-right {
+            transform-origin: right center;
+            transition: transform 1.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        .curtain-open .door-left {
+            transform: rotateY(-110deg) translateX(-20px);
+        }
+
+        .curtain-open .door-right {
+            transform: rotateY(110deg) translateX(20px);
+        }
+
+        .curtain-open .curtain-medallion {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.6) rotate(15deg);
+            pointer-events: none;
+            transition: all 0.8s ease-out;
+        }
+
+        /* Zero-Blur Sharp Calligraphy Filters */
+        .gold-calligraphy {
+            background: linear-gradient(135deg, #6E4700 0%, #B8860B 25%, #D4AF37 50%, #8C5E08 75%, #5C3A00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0px 1px 1px rgba(255, 255, 255, 0.8));
+            padding-bottom: 0.15em;
+            padding-top: 0.1em;
+            display: inline-block;
+            overflow: visible;
+            line-height: 1.45;
+        }
+
+        .silver-calligraphy {
+            background: linear-gradient(135deg, #0F172A 0%, #334155 30%, #64748B 60%, #1E293B 85%, #090D16 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0px 1px 1px rgba(255, 255, 255, 0.95));
+            padding-bottom: 0.15em;
+            padding-top: 0.1em;
+            display: inline-block;
+            overflow: visible;
+            line-height: 1.45;
+        }
+
+        /* Zari Border Texture */
+        .zari-border-left {
+            border-right: 6px solid #D4AF37;
+            box-shadow: -3px 0 10px rgba(0,0,0,0.15);
+            background-image: repeating-linear-gradient(45deg, #D4AF37 0, #D4AF37 5px, #B8860B 5px, #B8860B 10px);
+        }
+
+        .zari-border-right {
+            border-left: 6px solid #D4AF37;
+            box-shadow: 3px 0 10px rgba(0,0,0,0.15);
+            background-image: repeating-linear-gradient(-45deg, #D4AF37 0, #D4AF37 5px, #B8860B 5px, #B8860B 10px);
+        }
+
+        /* Scallop Valance */
+        .scallop-top {
+            background: radial-gradient(circle at 10px -5px, transparent 12px, #D4AF37 13px);
+            background-size: 20px 20px;
+        }
+
+        /* Swaying Tassels */
+        @keyframes tasselSway {
+            0%, 100% { transform: rotate(-3deg); }
+            50% { transform: rotate(3deg); }
+        }
+        .tassel-sway {
+            animation: tasselSway 3s ease-in-out infinite;
+            transform-origin: top center;
+        }
+
+        /* 3D Card Tilt Effect */
+        .card-tilt {
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            transform-style: preserve-3d;
+        }
+        .card-tilt:hover {
+            transform: translateY(-6px) rotateX(2deg) rotateY(-1deg);
+            box-shadow: 0 20px 35px -10px rgba(0,0,0,0.12), 0 0 20px var(--accent-glow);
+        }
+
+        /* Canvas Backdrop */
+        #petalCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 20;
+        }
+    </style>
+</head>
+
+<body class="theme-peacock text-gray-800 antialiased selection:bg-yellow-200 selection:text-yellow-900 min-h-screen relative overflow-x-hidden" style="background-color: var(--bg-primary);">
+
+    <!-- Canvas Flower & Golden Akshintalu Shower -->
+    <canvas id="petalCanvas"></canvas>
+
+    <!-- STICKY TOP MOOD / AURA THEME SWITCHER -->
+    <nav class="sticky top-3 z-40 max-w-md mx-auto px-4">
+        <div class="bg-white/90 backdrop-blur-md rounded-full shadow-lg border border-amber-200/60 p-1.5 flex items-center justify-between text-xs font-semibold tracking-wider text-gray-700">
+            <span class="pl-3 uppercase text-[10px] text-amber-800 font-bold hidden sm:inline"><i class="fa-solid fa-wand-magic-sparkles mr-1 text-amber-500"></i> Invitation Theme</span>
+            <div class="flex items-center space-x-1 w-full sm:w-auto justify-around">
+                <button onclick="setTheme('peacock')" id="btn-peacock" class="px-3 py-1.5 rounded-full transition-all flex items-center space-x-1.5 bg-emerald-100 text-emerald-900 border border-emerald-300 shadow-sm">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span>
+                    <span>Mint & Pearl</span>
+                </button>
+                <button onclick="setTheme('rose')" id="btn-rose" class="px-3 py-1.5 rounded-full transition-all flex items-center space-x-1.5 hover:bg-rose-50 text-gray-600">
+                    <span class="w-2.5 h-2.5 rounded-full bg-rose-400 inline-block"></span>
+                    <span>Royal Rose</span>
+                </button>
+                <button onclick="setTheme('haldi')" id="btn-haldi" class="px-3 py-1.5 rounded-full transition-all flex items-center space-x-1.5 hover:bg-amber-50 text-gray-600">
+                    <span class="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block"></span>
+                    <span>Haldi Saffron</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 3D ROYAL SILK OPEN-DOOR REVELATION OVERLAY -->
+    <div id="doorOverlay" class="fixed inset-0 z-50 flex items-center justify-center curtain-perspective overflow-hidden bg-slate-950/70 backdrop-blur-sm">
+        
+        <!-- Left Pleated Silk Door -->
+        <div class="door-left absolute top-0 left-0 w-1/2 h-full bg-gradient-to-r from-[#FFFDF9] via-[#F9E8C8] to-[#FCE4EC] shadow-2xl flex flex-col justify-between overflow-hidden border-r-4 border-amber-400/80">
+            <!-- Scalloped Top Valance -->
+            <div class="w-full h-10 bg-amber-600/90 flex items-center justify-around px-2 border-b-2 border-amber-300">
+                <div class="w-4 h-4 rounded-full bg-amber-300 shadow-inner"></div>
+                <div class="w-4 h-4 rounded-full bg-amber-300 shadow-inner"></div>
+                <div class="w-4 h-4 rounded-full bg-amber-300 shadow-inner"></div>
+                <div class="w-4 h-4 rounded-full bg-amber-300 shadow-inner"></div>
+            </div>
+            <!-- Vertical Silk Texture Overlay -->
+            <div class="absolute inset-0 opacity-15 pointer-events-none bg-[radial-gradient(#d4af37_1px,transparent_1px)] [background-size:16px_16px]"></div>
+            <!-- Golden Zari Lace Border Right -->
+            <div class="absolute right-0 top-0 bottom-0 w-6 zari-border-left"></div>
+            <!-- Swaying Tassels -->
+            <div class="p-6 relative z-10 flex flex-col items-start space-y-4">
+                <div class="tassel-sway text-amber-600 text-3xl"><i class="fa-solid fa-ribbon"></i></div>
+            </div>
+            <div class="p-4 text-xs font-serif text-amber-900/60 uppercase tracking-widest text-left">Royal Invitation</div>
+        </div>
+
+        <!-- Right Pleated Silk Door -->
+        <div class="door-right absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#FFFDF9] via-[#F9E8C8] to-[#FCE4EC] shadow-2xl flex flex-col justify-between overflow-hidden border-l-4 border-amber-400/80">
+            <!-- Scalloped Top Valance -->
+            <div class="w-full h-10 bg-amber-600/90 flex items-center justify-around px-2 border-b-2 border-amber-300">
+                <div class="w-4 h-4 rounded-full bg-amber-300 shadow-inner"></div>
+                <div class="w-4 h-4 rounded-full bg-amber-300 shadow-inner"></div>
+                <div class="w-4 h-4 rounded-full bg-amber-300 shadow-inner"></div>
+                <div class="w-4 h-4 rounded-full bg-amber-300 shadow-inner"></div>
+            </div>
+            <!-- Vertical Silk Texture Overlay -->
+            <div class="absolute inset-0 opacity-15 pointer-events-none bg-[radial-gradient(#d4af37_1px,transparent_1px)] [background-size:16px_16px]"></div>
+            <!-- Golden Zari Lace Border Left -->
+            <div class="absolute left-0 top-0 bottom-0 w-6 zari-border-right"></div>
+            <!-- Swaying Tassels -->
+            <div class="p-6 relative z-10 flex flex-col items-end space-y-4">
+                <div class="tassel-sway text-amber-600 text-3xl"><i class="fa-solid fa-ribbon"></i></div>
+            </div>
+            <div class="p-4 text-xs font-serif text-amber-900/60 uppercase tracking-widest text-right">Shubh Vivah</div>
+        </div>
+
+        <!-- CENTERED FROSTED PEARL & GOLD FILIGREE MEDALLION -->
+        <div class="curtain-medallion absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 w-11/12 max-w-md bg-white/95 backdrop-blur-xl rounded-3xl p-6 sm:p-8 text-center shadow-2xl border-4 border-amber-300/80 flex flex-col items-center">
+            
+            <!-- Sacred Pill -->
+            <div class="inline-block px-4 py-1 rounded-full bg-amber-100/90 border border-amber-300 text-amber-900 text-xs font-semibold tracking-widest uppercase mb-4">
+                || SHREE GANESHAY NAMAH ||
+            </div>
+
+            <!-- Botanical Golden Lotus Crest SVG -->
+            <div class="w-16 h-16 mb-2 text-amber-500 flex items-center justify-center">
+                <svg viewBox="0 0 100 100" class="w-full h-full fill-current drop-shadow">
+                    <path d="M50 15 C55 35, 75 40, 85 50 C70 55, 60 70, 50 85 C40 70, 30 55, 15 50 C25 40, 45 35, 50 15 Z" fill="#D4AF37"/>
+                    <path d="M50 25 C53 40, 68 45, 75 52 C63 56, 56 68, 50 78 C44 68, 37 56, 25 52 C32 45, 47 40, 50 25 Z" fill="#FCE762"/>
+                    <circle cx="50" cy="50" r="6" fill="#9A7B1C"/>
+                </svg>
+            </div>
+
+            <!-- Names -->
+            <div class="my-2">
+                <div class="font-calligraphy text-4xl sm:text-5xl font-bold gold-calligraphy">Geeta</div>
+                <div class="font-cinzel text-xl text-amber-600 font-bold my-0.5">&amp;</div>
+                <div class="font-calligraphy text-4xl sm:text-5xl font-bold silver-calligraphy">Dhiraj</div>
+            </div>
+
+            <p class="font-garamond text-base text-gray-600 italic my-3">
+                Cordially request the honor of your presence at their auspicious wedding celebration.
+            </p>
+
+            <!-- Date Pill -->
+            <div class="text-xs font-semibold text-amber-900 tracking-wider bg-amber-50 px-4 py-1.5 rounded-full border border-amber-200 mb-6">
+                <i class="fa-regular fa-calendar-check mr-1.5 text-amber-600"></i> 20th JANUARY 2027
+            </div>
+
+            <!-- Revelation Trigger Button -->
+            <button onclick="openCurtainDoors()" class="w-full py-3.5 px-6 rounded-full bg-gradient-to-r from-amber-500 via-amber-600 to-yellow-600 hover:from-amber-600 hover:to-yellow-700 text-white font-semibold tracking-wider text-sm shadow-xl transition-all duration-300 transform hover:scale-[1.02] flex items-center justify-center space-x-2 border border-amber-300">
+                <span>OPEN ROYAL INVITATION</span>
+                <i class="fa-solid fa-envelope-open-text text-base"></i>
+            </button>
+        </div>
+    </div>
+
+
+    <!-- MAIN INVITATION CONTENT CONTAINER -->
+    <main class="max-w-4xl mx-auto px-4 py-8 relative z-10 space-y-12">
+
+        <!-- SACRED HEADER CARD -->
+        <section class="bg-white/85 backdrop-blur-md rounded-3xl p-6 sm:p-10 text-center shadow-xl border border-amber-200/80 relative overflow-hidden card-tilt">
+            <!-- Decorative Corner Flourishes -->
+            <div class="absolute top-3 left-3 text-amber-400/40 text-2xl"><i class="fa-solid fa-dharmachakra"></i></div>
+            <div class="absolute top-3 right-3 text-amber-400/40 text-2xl"><i class="fa-solid fa-dharmachakra"></i></div>
+            <div class="absolute bottom-3 left-3 text-amber-400/40 text-2xl"><i class="fa-solid fa-dharmachakra"></i></div>
+            <div class="absolute bottom-3 right-3 text-amber-400/40 text-2xl"><i class="fa-solid fa-dharmachakra"></i></div>
+
+            <!-- Sacred Invocation Header Pill -->
+            <div class="inline-block px-4 py-1.5 rounded-full bg-amber-50 border border-amber-300/80 text-amber-900 text-xs sm:text-sm font-semibold tracking-widest uppercase mb-6 shadow-sm">
+                || OM GANESHAY NAMAH || • || SHREE LAXMI NARSHIMHA NAMAH ||
+            </div>
+
+            <!-- Golden Lotus Crest -->
+            <div class="w-20 h-20 mx-auto mb-4 text-amber-500">
+                <svg viewBox="0 0 100 100" class="w-full h-full fill-current">
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="#D4AF37" stroke-width="1.5" stroke-dasharray="4 2"/>
+                    <path d="M50 15 C55 35, 75 40, 85 50 C70 55, 60 70, 50 85 C40 70, 30 55, 15 50 C25 40, 45 35, 50 15 Z" fill="#D4AF37"/>
+                    <path d="M50 25 C53 40, 68 45, 75 52 C63 56, 56 68, 50 78 C44 68, 37 56, 25 52 C32 45, 47 40, 50 25 Z" fill="#FCE762"/>
+                    <circle cx="50" cy="50" r="5" fill="#9A7B1C"/>
+                </svg>
+            </div>
+
+            <h3 class="font-garamond text-lg sm:text-xl text-gray-600 uppercase tracking-widest font-medium">With the heavenly blessings of elders</h3>
+            
+            <!-- COUPLE CALLIGRAPHY SECTION -->
+            <div class="my-6 space-y-4">
+                
+                <!-- GEETA -->
+                <div class="flex flex-col items-center">
+                    <h1 class="font-calligraphy text-5xl sm:text-7xl lg:text-8xl font-bold gold-calligraphy leading-tight">
+                        Geeta
+                    </h1>
+                    <p class="font-garamond text-base sm:text-lg text-gray-700 font-medium mt-1">
+                        Daughter of <span class="font-semibold text-amber-900">Shri Prakash</span> &amp; <span class="font-semibold text-amber-900">Smt. Sushila Manchadi</span>
+                    </p>
+                </div>
+
+                <!-- AMPERSAND -->
+                <div class="flex items-center justify-center space-x-4 my-2">
+                    <div class="h-px w-16 bg-gradient-to-r from-transparent to-amber-400"></div>
+                    <span class="font-cinzel text-2xl sm:text-3xl text-amber-600 font-bold">&amp;</span>
+                    <div class="h-px w-16 bg-gradient-to-l from-transparent to-amber-400"></div>
+                </div>
+
+                <!-- DHIRAJ -->
+                <div class="flex flex-col items-center">
+                    <h1 class="font-calligraphy text-5xl sm:text-7xl lg:text-8xl font-bold silver-calligraphy leading-tight">
+                        Dhiraj
+                    </h1>
+                    <p class="font-garamond text-base sm:text-lg text-gray-700 font-medium mt-1">
+                        Son of <span class="font-semibold text-slate-900">Shri Devendra</span> &amp; <span class="font-semibold text-slate-900">Smt. Sonali Saraiya</span>
+                    </p>
+                </div>
+
+            </div>
+
+            <p class="font-garamond text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto italic leading-relaxed pt-2">
+                Solicit your gracious presence and blessings to celebrate the union of love, tradition, and togetherness.
+            </p>
+        </section>
+
+
+        <!-- STRICT SINGLE-LINE LIVE COUNTDOWN TIMER -->
+        <section class="bg-white/90 backdrop-blur-md rounded-3xl p-5 sm:p-8 shadow-xl border border-amber-200/80 text-center">
+            <h4 class="font-garamond text-base sm:text-lg uppercase tracking-widest text-amber-900 font-semibold mb-4 flex items-center justify-center">
+                <i class="fa-solid fa-hourglass-half mr-2 text-amber-600"></i> Counting Down To The Auspicious Muhurtham
+            </h4>
+
+            <!-- STRICT 4-COLUMN HORIZONTAL SINGLE LINE GRID -->
+            <div class="grid grid-cols-4 gap-2 sm:gap-4 max-w-2xl mx-auto items-center justify-center">
+                <!-- Days -->
+                <div class="bg-gradient-to-b from-amber-50 to-white rounded-2xl p-2.5 sm:p-4 border border-amber-200/70 shadow-sm flex flex-col items-center justify-center min-w-0">
+                    <span id="cd-days" class="font-cinzel font-bold text-amber-900 text-xl sm:text-3xl lg:text-4xl leading-none">00</span>
+                    <span class="text-[9px] sm:text-xs font-sans uppercase font-medium text-gray-500 tracking-wider mt-1 truncate w-full">Days</span>
+                </div>
+                <!-- Hours -->
+                <div class="bg-gradient-to-b from-amber-50 to-white rounded-2xl p-2.5 sm:p-4 border border-amber-200/70 shadow-sm flex flex-col items-center justify-center min-w-0">
+                    <span id="cd-hours" class="font-cinzel font-bold text-amber-900 text-xl sm:text-3xl lg:text-4xl leading-none">00</span>
+                    <span class="text-[9px] sm:text-xs font-sans uppercase font-medium text-gray-500 tracking-wider mt-1 truncate w-full">Hours</span>
+                </div>
+                <!-- Minutes -->
+                <div class="bg-gradient-to-b from-amber-50 to-white rounded-2xl p-2.5 sm:p-4 border border-amber-200/70 shadow-sm flex flex-col items-center justify-center min-w-0">
+                    <span id="cd-mins" class="font-cinzel font-bold text-amber-900 text-xl sm:text-3xl lg:text-4xl leading-none">00</span>
+                    <span class="text-[9px] sm:text-xs font-sans uppercase font-medium text-gray-500 tracking-wider mt-1 truncate w-full">Mins</span>
+                </div>
+                <!-- Seconds -->
+                <div class="bg-gradient-to-b from-amber-50 to-white rounded-2xl p-2.5 sm:p-4 border border-amber-200/70 shadow-sm flex flex-col items-center justify-center min-w-0">
+                    <span id="cd-secs" class="font-cinzel font-bold text-amber-900 text-xl sm:text-3xl lg:text-4xl leading-none">00</span>
+                    <span class="text-[9px] sm:text-xs font-sans uppercase font-medium text-gray-500 tracking-wider mt-1 truncate w-full">Secs</span>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- CELEBRATION EVENTS SECTION (3D TILT CARDS) -->
+        <section class="space-y-8">
+            <div class="text-center">
+                <span class="text-xs font-sans uppercase font-bold tracking-widest text-amber-800 bg-amber-100/80 px-4 py-1 rounded-full border border-amber-300">Wedding Itinerary</span>
+                <h2 class="font-garamond text-3xl sm:text-4xl text-gray-800 font-bold mt-2">Auspicious Ceremonies</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- CARD 1: HALDI CEREMONY -->
+                <article class="bg-white/90 backdrop-blur-md rounded-3xl p-6 sm:p-8 shadow-xl border border-amber-200/80 flex flex-col justify-between card-tilt relative overflow-hidden">
+                    <div class="top-badge absolute top-4 right-4 bg-amber-100 text-amber-900 text-[11px] font-bold px-3 py-1 rounded-full border border-amber-300">
+                        <i class="fa-solid fa-sun mr-1 text-amber-600"></i> Pre-Wedding
+                    </div>
+
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-800 flex items-center justify-center text-xl mb-4 shadow-inner">
+                            <i class="fa-solid fa-sparkles"></i>
+                        </div>
+                        <h3 class="font-cinzel text-2xl font-bold text-gray-800">Haldi Ceremony</h3>
+                        <p class="font-garamond text-base text-gray-600 italic mt-1">A golden ritual of turmeric, blessings, and laughter.</p>
+
+                        <div class="my-6 space-y-3 text-sm text-gray-700">
+                            <div class="flex items-start space-x-3">
+                                <i class="fa-regular fa-calendar text-amber-600 mt-1 text-base"></i>
+                                <div>
+                                    <strong class="block text-gray-900">Saturday, 17th January 2026</strong>
+                                    <span class="text-gray-500 text-xs">Auspicious Time: 6:00 PM IST Onwards</span>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <i class="fa-solid fa-location-dot text-amber-600 mt-1 text-base"></i>
+                                <div>
+                                    <strong class="block text-gray-900">Residence Venue</strong>
+                                    <span class="text-gray-600">309 Sai Balaji Apt, Dongarpada, Virar West</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="pt-4 border-t border-gray-100 space-y-3">
+                        <div class="flex items-center space-x-2">
+                            <a href="https://maps.google.com/?q=309+Sai+Balaji+Apt+Dongarpada+Virar+West" target="_blank" rel="noopener noreferrer" class="flex-1 py-2.5 px-4 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-900 text-xs font-semibold flex items-center justify-center space-x-1.5 transition-colors border border-amber-200">
+                                <i class="fa-solid fa-diamond-turn-right text-amber-700"></i>
+                                <span>Get Directions</span>
+                            </a>
+                            <button onclick="toggleMap('map-haldi')" class="px-4 py-2.5 rounded-xl bg-gray-50 hover:bg-gray-100 text-gray-700 text-xs font-semibold flex items-center justify-center space-x-1 transition-colors border border-gray-200">
+                                <i class="fa-regular fa-map"></i>
+                                <span>Preview</span>
+                            </button>
+                        </div>
+                        
+                        <!-- Map Preview Iframe Collapsible -->
+                        <div id="map-haldi" class="hidden rounded-xl overflow-hidden border border-amber-200 h-44 transition-all">
+                            <iframe class="w-full h-full border-0" loading="lazy" src="https://maps.google.com/maps?q=309%20Sai%20Balaji%20Apt%2C%20Dongarpada%2C%20Virar%20West&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
+                        </div>
+
+                        <!-- Add to Calendar -->
+                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Haldi+Ceremony+-+Geeta+%26+Dhiraj&dates=20260117T123000Z/20260117T160000Z&details=Haldi+Ceremony+Celebration&location=309+Sai+Balaji+Apt,+Dongarpada,+Virar+West" target="_blank" rel="noopener noreferrer" class="block text-center text-xs text-amber-800 hover:text-amber-900 font-medium py-1">
+                            <i class="fa-regular fa-calendar-plus mr-1"></i> Add to Google Calendar
+                        </a>
+                    </div>
+                </article>
+
+
+                <!-- CARD 2: SHUBH VIVAH -->
+                <article class="bg-white/90 backdrop-blur-md rounded-3xl p-6 sm:p-8 shadow-xl border-2 border-amber-400/80 flex flex-col justify-between card-tilt relative overflow-hidden">
+                    <div class="top-badge absolute top-4 right-4 bg-gradient-to-r from-amber-500 to-yellow-600 text-white text-[11px] font-bold px-3 py-1 rounded-full shadow-sm">
+                        <i class="fa-solid fa-om mr-1"></i> Main Ceremony
+                    </div>
+
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-800 flex items-center justify-center text-xl mb-4 shadow-inner">
+                            <i class="fa-solid fa-[#D4AF37] fa-hands-praying"></i>
+                        </div>
+                        <h3 class="font-cinzel text-2xl font-bold text-gray-800">Shubh Vivah</h3>
+                        <p class="font-garamond text-base text-gray-600 italic mt-1">The sacred wedding ceremony under the divine canopy.</p>
+
+                        <div class="my-6 space-y-3 text-sm text-gray-700">
+                            <div class="flex items-start space-x-3">
+                                <i class="fa-regular fa-clock text-amber-600 mt-1 text-base"></i>
+                                <div>
+                                    <strong class="block text-gray-900">Wednesday, 20th January 2027</strong>
+                                    <span class="text-amber-800 font-bold text-xs bg-amber-100 px-2 py-0.5 rounded border border-amber-300 inline-block mt-0.5">
+                                        Auspicious Muhurtham: 10:42 AM IST
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <i class="fa-solid fa-gopuram text-amber-600 mt-1 text-base"></i>
+                                <div>
+                                    <strong class="block text-gray-900">ISKCON Temple Hall</strong>
+                                    <span class="text-gray-600">Mira Road (East), Maharashtra</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PROMINENT LUNCH HIGHLIGHT BADGE -->
+                        <div class="bg-gradient-to-r from-amber-500 via-amber-600 to-yellow-600 text-white p-3.5 rounded-2xl shadow-md text-center my-4 border border-yellow-300">
+                            <div class="text-xs uppercase font-bold tracking-widest text-yellow-200">Feast Celebration</div>
+                            <div class="font-garamond text-lg font-bold">
+                                <i class="fa-solid fa-utensils mr-2"></i> Lunch Follows: 12:30 PM Onwards
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="pt-4 border-t border-gray-100 space-y-3">
+                        <div class="flex items-center space-x-2">
+                            <a href="https://maps.google.com/?q=ISKCON+Mira+Road+East" target="_blank" rel="noopener noreferrer" class="flex-1 py-2.5 px-4 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 text-white text-xs font-semibold flex items-center justify-center space-x-1.5 transition-all shadow-md hover:shadow-lg">
+                                <i class="fa-solid fa-location-arrow"></i>
+                                <span>Navigate to ISKCON</span>
+                            </a>
+                            <button onclick="toggleMap('map-vivah')" class="px-4 py-2.5 rounded-xl bg-gray-50 hover:bg-gray-100 text-gray-700 text-xs font-semibold flex items-center justify-center space-x-1 transition-colors border border-gray-200">
+                                <i class="fa-regular fa-map"></i>
+                                <span>Preview</span>
+                            </button>
+                        </div>
+
+                        <!-- Map Preview Iframe Collapsible -->
+                        <div id="map-vivah" class="hidden rounded-xl overflow-hidden border border-amber-200 h-44 transition-all">
+                            <iframe class="w-full h-full border-0" loading="lazy" src="https://maps.google.com/maps?q=ISKCON%20Mira%20Road%20East&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
+                        </div>
+
+                        <!-- Add to Calendar -->
+                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Shubh+Vivah+-+Geeta+%26+Dhiraj&dates=20270120T051200Z/20270120T100000Z&details=Wedding+Ceremony+and+Lunch+Feast&location=ISKCON+Mira+Road+East" target="_blank" rel="noopener noreferrer" class="block text-center text-xs text-amber-800 hover:text-amber-900 font-medium py-1">
+                            <i class="fa-regular fa-calendar-plus mr-1"></i> Add to Google Calendar
+                        </a>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+
+        <!-- LIVE ENGLISH BLESSINGS WALL & SILENT WHATSAPP ROUTING -->
+        <section class="bg-white/90 backdrop-blur-md rounded-3xl p-6 sm:p-10 shadow-xl border border-amber-200/80 space-y-6">
+            <div class="text-center">
+                <span class="text-xs font-sans uppercase font-bold tracking-widest text-amber-800 bg-amber-100 px-4 py-1 rounded-full border border-amber-300">Guestbook</span>
+                <h2 class="font-garamond text-3xl sm:text-4xl text-gray-800 font-bold mt-2">Shower Your Blessings</h2>
+                <p class="font-garamond text-base text-gray-600 italic mt-1">Leave a warm message for Geeta &amp; Dhiraj. You can also send it directly on WhatsApp!</p>
+            </div>
+
+            <!-- Quick Festive English Blessing Chips -->
+            <div class="flex flex-wrap gap-2 justify-center text-xs font-medium text-gray-700">
+                <button onclick="fillChip('Wishing you a lifetime of endless love, joy, and prosperity!')" class="bg-amber-50 hover:bg-amber-100 border border-amber-200 rounded-full px-3 py-1.5 transition-colors">
+                    ✨ Lifetime of love &amp; joy
+                </button>
+                <button onclick="fillChip('May your journey together be blessed with happiness and harmony!')" class="bg-amber-50 hover:bg-amber-100 border border-amber-200 rounded-full px-3 py-1.5 transition-colors">
+                    🌺 Blessed with harmony
+                </button>
+                <button onclick="fillChip('Congratulations Geeta and Dhiraj! Wishing you a magnificent wedding!')" class="bg-amber-50 hover:bg-amber-100 border border-amber-200 rounded-full px-3 py-1.5 transition-colors">
+                    🎉 Magnificent wedding!
+                </button>
+            </div>
+
+            <!-- Blessing Form -->
+            <form id="blessingForm" onsubmit="handleBlessingSubmit(event)" class="space-y-4 max-w-2xl mx-auto bg-amber-50/50 p-4 sm:p-6 rounded-2xl border border-amber-200/60">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1">Your Name</label>
+                        <input type="text" id="guestName" required placeholder="e.g. Rajesh &amp; Family" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none text-sm bg-white">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1">City / Relation</label>
+                        <input type="text" id="guestRelation" placeholder="e.g. Mumbai / Friend" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none text-sm bg-white">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1">Your Blessing Message</label>
+                    <textarea id="guestMessage" required rows="3" placeholder="Write your heartfelt wishes here in English..." class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none text-sm bg-white resize-none"></textarea>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row gap-3 pt-2">
+                    <button type="submit" class="flex-1 py-3 px-6 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-semibold text-sm shadow-md transition-all flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-heart"></i>
+                        <span>Post Blessing Below</span>
+                    </button>
+                    <button type="button" onclick="sendWhatsAppBlessing()" class="flex-1 py-3 px-6 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm shadow-md transition-all flex items-center justify-center space-x-2">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <span>Send Blessing on WhatsApp</span>
+                    </button>
+                </div>
+            </form>
+
+            <!-- Blessings Wall Cards List -->
+            <div id="blessingsWall" class="space-y-4 pt-4 max-w-2xl mx-auto">
+                <!-- Dynamically populated blessings will appear here -->
+            </div>
+        </section>
+
+
+        <!-- FOOTER & SACRED CLOSING -->
+        <footer class="text-center py-8 space-y-4 text-gray-600">
+            <div class="w-12 h-12 mx-auto text-amber-500/70">
+                <svg viewBox="0 0 100 100" class="w-full h-full fill-current">
+                    <path d="M50 15 C55 35, 75 40, 85 50 C70 55, 60 70, 50 85 C40 70, 30 55, 15 50 C25 40, 45 35, 50 15 Z"/>
+                </svg>
+            </div>
+            <p class="font-garamond text-xl font-semibold text-amber-900">
+                We eagerly await your gracious presence!
+            </p>
+            <p class="text-xs text-gray-600 tracking-wider uppercase font-medium">
+                Geeta &amp; Dhiraj • Royal Wedding Celebration
+            </p>
+        </footer>
+
+    </main>
+
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        /* 1. Theme Switcher Functionality */
+        function setTheme(themeName) {
+            document.body.classList.remove('theme-peacock', 'theme-rose', 'theme-haldi');
+            document.body.classList.add('theme-' + themeName);
+            
+            // Update button styles
+            ['peacock', 'rose', 'haldi'].forEach(t => {
+                const btn = document.getElementById('btn-' + t);
+                if (btn) {
+                    if (t === themeName) {
+                        btn.className = "px-3 py-1.5 rounded-full transition-all flex items-center space-x-1.5 bg-amber-100 text-amber-900 border border-amber-300 shadow-sm font-bold";
+                    } else {
+                        btn.className = "px-3 py-1.5 rounded-full transition-all flex items-center space-x-1.5 hover:bg-gray-100 text-gray-600";
+                    }
+                }
+            });
+
+            // Update petal colors dynamically for canvas particle engine
+            if (themeName === 'rose') {
+                petalColors = ['rgba(251, 113, 133, 0.85)', 'rgba(253, 164, 175, 0.8)', 'rgba(255, 228, 230, 0.9)'];
+            } else if (themeName === 'haldi') {
+                petalColors = ['rgba(251, 191, 36, 0.9)', 'rgba(245, 158, 11, 0.85)', 'rgba(254, 240, 138, 0.9)'];
+            } else {
+                petalColors = ['rgba(52, 211, 153, 0.75)', 'rgba(251, 191, 36, 0.85)', 'rgba(209, 250, 229, 0.9)'];
+            }
+        }
+
+
+        /* 2. 3D Open-Door Revelation Trigger */
+        function openCurtainDoors() {
+            const overlay = document.getElementById('doorOverlay');
+            if (overlay) {
+                overlay.classList.add('curtain-open');
+                // Trigger burst of extra flower petals
+                burstPetals(40);
+                setTimeout(() => {
+                    overlay.style.pointerEvents = 'none';
+                    overlay.style.opacity = '0';
+                    overlay.style.transition = 'opacity 0.6s ease';
+                    setTimeout(() => { overlay.style.display = 'none'; }, 600);
+                }, 1600);
+            }
+        }
+
+
+        /* 3. Strict Single-Line Countdown Timer */
+        // Target Date: 20th January 2027, 10:42 AM IST
+        const weddingDate = new Date('2027-01-20T10:42:00+05:30').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const difference = weddingDate - now;
+
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                document.getElementById('cd-days').innerText = String(days).padStart(2, '0');
+                document.getElementById('cd-hours').innerText = String(hours).padStart(2, '0');
+                document.getElementById('cd-mins').innerText = String(minutes).padStart(2, '0');
+                document.getElementById('cd-secs').innerText = String(seconds).padStart(2, '0');
+            } else {
+                document.getElementById('cd-days').innerText = '00';
+                document.getElementById('cd-hours').innerText = '00';
+                document.getElementById('cd-mins').innerText = '00';
+                document.getElementById('cd-secs').innerText = '00';
+            }
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+
+        /* 4. Collapsible Map Preview Toggle */
+        function toggleMap(mapId) {
+            const mapEl = document.getElementById(mapId);
+            if (mapEl) {
+                mapEl.classList.toggle('hidden');
+            }
+        }
+
+
+        /* 5. Canvas Flower & Golden Akshintalu Rice Particle Engine */
+        const canvas = document.getElementById('petalCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+        let petalColors = ['rgba(52, 211, 153, 0.75)', 'rgba(251, 191, 36, 0.85)', 'rgba(209, 250, 229, 0.9)'];
+        const particles = [];
+
+        class Particle {
+            constructor(isRice = false) {
+                this.reset(isRice);
+            }
+
+            reset(isRice = false) {
+                this.x = Math.random() * width;
+                this.y = -20 - Math.random() * 50;
+                this.size = isRice ? (Math.random() * 2 + 1.5) : (Math.random() * 8 + 6);
+                this.speedY = isRice ? (Math.random() * 2.5 + 1.5) : (Math.random() * 1.5 + 0.8);
+                this.speedX = Math.random() * 1.2 - 0.6;
+                this.rotation = Math.random() * Math.PI * 2;
+                this.rotationSpeed = Math.random() * 0.05 - 0.025;
+                this.isRice = isRice || (Math.random() < 0.35); // 35% Golden Akshintalu rice grains
+                this.color = this.isRice ? 'rgba(255, 215, 0, 0.9)' : petalColors[Math.floor(Math.random() * petalColors.length)];
+                this.opacity = Math.random() * 0.7 + 0.3;
+            }
+
+            update(boost = 0) {
+                this.y += this.speedY + boost;
+                this.x += Math.sin(this.y * 0.01) + this.speedX;
+                this.rotation += this.rotationSpeed;
+
+                if (this.y > height + 20) {
+                    this.reset();
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation);
+                ctx.globalAlpha = this.opacity;
+
+                if (this.isRice) {
+                    // Golden Akshintalu Turmeric Rice Grain (Elongated oval)
+                    ctx.fillStyle = this.color;
+                    ctx.beginPath();
+                    ctx.ellipse(0, 0, this.size, this.size * 2.5, 0, 0, Math.PI * 2);
+                    ctx.fill();
+                } else {
+                    // Soft Flower Petal Shape
+                    ctx.fillStyle = this.color;
+                    ctx.beginPath();
+                    ctx.moveTo(0, 0);
+                    ctx.quadraticCurveTo(this.size, -this.size, this.size, 0);
+                    ctx.quadraticCurveTo(this.size, this.size, 0, 0);
+                    ctx.fill();
+                }
+
+                ctx.restore();
+            }
+        }
+
+        // Initialize 60 initial particles
+        for (let i = 0; i < 60; i++) {
+            const p = new Particle();
+            p.y = Math.random() * height; // Spread across screen
+            particles.push(p);
+        }
+
+        function burstPetals(count = 30) {
+            for (let i = 0; i < count; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        let lastScrollY = window.scrollY;
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.scrollY;
+            if (Math.abs(currentScroll - lastScrollY) > 15) {
+                // Boost speed slightly on scroll
+                particles.forEach(p => p.update(1.2));
+            }
+            lastScrollY = currentScroll;
+        });
+
+        function animateCanvas() {
+            ctx.clearRect(0, 0, width, height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateCanvas);
+        }
+        animateCanvas();
+
+
+        /* 6. English Blessings Wall & Silent WhatsApp Integration */
+        const sampleBlessings = [
+            { name: "Srinivas & Family", relation: "Uncle & Aunt", text: "Wishing dearest Geeta and Dhiraj a lifetime of pure bliss, prosperity, and togetherness!", time: "Recently" },
+            { name: "Ananya Sharma", relation: "Friend", text: "So thrilled for you both! May your union be filled with joy, laughter, and endless memories.", time: "1 hour ago" }
+        ];
+
+        function getBlessings() {
+            const stored = localStorage.getItem('wedding_blessings_gd');
+            if (stored) {
+                try { return JSON.parse(stored); } catch(e) { return sampleBlessings; }
+            }
+            return sampleBlessings;
+        }
+
+        function renderBlessings() {
+            const blessings = getBlessings();
+            const container = document.getElementById('blessingsWall');
+            if (!container) return;
+
+            container.innerHTML = blessings.map(b => `
+                <div class="bg-gradient-to-r from-amber-50/60 to-white p-4 rounded-2xl border border-amber-200/70 shadow-sm space-y-2">
+                    <!-- Non-overlapping flex header -->
+                    <div class="flex flex-wrap items-center justify-between gap-2 break-words border-b border-amber-100 pb-2">
+                        <div class="flex items-center space-x-2">
+                            <span class="w-7 h-7 rounded-full bg-amber-200 text-amber-900 font-bold text-xs flex items-center justify-center">
+                                ${b.name.charAt(0)}
+                            </span>
+                            <div>
+                                <h4 class="font-bold text-gray-800 text-sm leading-snug">${escapeHtml(b.name)}</h4>
+                                ${b.relation ? `<span class="text-[11px] text-amber-800 font-medium">${escapeHtml(b.relation)}</span>` : ''}
+                            </div>
+                        </div>
+                        <span class="text-[10px] text-gray-400 uppercase tracking-wider">${escapeHtml(b.time || 'Just Now')}</span>
+                    </div>
+                    <p class="font-garamond text-base text-gray-700 italic">"${escapeHtml(b.text)}"</p>
+                </div>
+            `).join('');
+        }
+
+        function escapeHtml(str) {
+            return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+
+        function fillChip(text) {
+            const input = document.getElementById('guestMessage');
+            if (input) {
+                input.value = text;
+                input.focus();
+            }
+        }
+
+        function handleBlessingSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('guestName').value.trim();
+            const relation = document.getElementById('guestRelation').value.trim();
+            const message = document.getElementById('guestMessage').value.trim();
+
+            if (!name || !message) return;
+
+            const blessings = getBlessings();
+            blessings.unshift({
+                name: name,
+                relation: relation,
+                text: message,
+                time: "Just Now"
+            });
+
+            localStorage.setItem('wedding_blessings_gd', JSON.stringify(blessings));
+            renderBlessings();
+            
+            // Reset form
+            document.getElementById('blessingForm').reset();
+            burstPetals(25);
+        }
+
+        function sendWhatsAppBlessing() {
+            const name = document.getElementById('guestName').value.trim() || 'Well Wisher';
+            const relation = document.getElementById('guestRelation').value.trim();
+            const message = document.getElementById('guestMessage').value.trim() || 'Wishing Geeta & Dhiraj a happy married life!';
+
+            let text = `*Wedding Blessings for Geeta & Dhiraj*\n\n`;
+            text += `*From:* ${name}${relation ? ` (${relation})` : ''}\n`;
+            text += `*Message:* ${message}`;
+
+            // Silent redirect to WhatsApp destination without displaying raw contact phone number in UI
+            const waUrl = `https://wa.me/917045624711?text=${encodeURIComponent(text)}`;
+            window.open(waUrl, '_blank');
+        }
+
+        // Render initial blessings on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderBlessings();
+        });
+    </script>
+</body>
+</html>
